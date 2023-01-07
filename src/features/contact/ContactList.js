@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
+import { View, StyleSheet } from 'react-native';
 import { loadContactAsync, addContactAsync, removeContactAsync, updateContactAsync, selectContact, loadMore } from './contactSlice'
-import ContactItem from '../../component/ContactItem'
+import ContactItem from "../../components/ContactItem";
 
 export default function ContactList(props) {
     const contact = useSelector(selectContact)
@@ -19,7 +20,7 @@ export default function ContactList(props) {
     }
 
     return (
-        <div onScroll={scrolling} className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 py-4 px-2 max-h-screen overflow-y-auto h-107">
+        <View onScroll={scrolling} style={styles.list}>
             {
                 contact.map((user, index) => (
                     <ContactItem
@@ -31,6 +32,14 @@ export default function ContactList(props) {
                         remove={() => dispatch(removeContactAsync({ id: user.id }))} />
                 ))
             }
-        </div>
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    list: {
+        display: 'flex',
+        overflow: 'scroll',
+        padding: 10
+    }
+});

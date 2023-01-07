@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
 
 export default function ContactItem(props) {
     const [contact, setContact] = useState({
@@ -47,36 +46,42 @@ export default function ContactItem(props) {
     if (isEdit.editCond) {
         return (
             <View style={styles.card} >
-                <View style='flex space-x-3 items-center'>
-                    <input type='text' name='name' id='name' value={contact.name} onChange={handleInputChange} style='px-2 py-1 border border-blue-400/75 rounded-lg w-full' required />
+                <View>
+                    <TextInput value={contact.name} onPress={handleInputChange} style='px-2 py-1 border border-blue-400/75 rounded-lg w-full' required />
                 </View>
 
-                <View style='flex space-x-4 items-center'>
-                    <input type='tel' pattern='[08][0-9]{11}' name='phone' id='phone' value={contact.phone} onChange={handleInputChange} style='px-2 py-1 border border-blue-400/75 rounded-lg w-full' required />
+                <View>
+                    <TextInput type='tel' pattern='[08][0-9]{11}' name='phone' id='phone' value={contact.phone} onPress={handleInputChange} style='px-2 py-1 border border-blue-400/75 rounded-lg w-full' required />
                 </View>
 
-                <View style='flex justify-evenly py-2'>
-                    <button type='button' onClick={handleUpdate} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>Update</button>
+                <View style={styles.button}>
+                    <TouchableOpacity type='button' onPress={handleUpdate} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>
+                        <Text>Update</Text>
+                    </TouchableOpacity>
 
-                    <button type='button' onClick={editFalse} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>Cancel</button>
+                    <TouchableOpacity type='button' onPress={editFalse} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>
+                        <Text>Cancel</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
     } else {
         return (
-            <View style='transition ease-in-out shadow-lg shadow-slate-300 bg-white/80 rounded-lg w-auto h-auto space-y-4 px-8 py-5  border-2 border-blue-200 hover:-translate-y-1 hover:scale-103' >
-                <View style='flex space-x-3 items-center'>
+            <View style={styles.card} >
+                <View>
                     <Text>{contact.name}</Text>
                 </View>
 
-                <View style='flex space-x-4 items-center opacity-60'>
+                <View>
                     <Text>{contact.phone}</Text>
                 </View>
 
-                <View style='flex justify-evenly py-2'>
-                    <TouchableOpacity type='button' onClick={editTrue} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>Edit</TouchableOpacity>
+                <View style={styles.button}>
+                    <TouchableOpacity type='button' onPress={editTrue}>
+                        <Text>Edit</Text>
+                    </TouchableOpacity>
 
-                    <TouchableOpacity type='button' onClick={props.sent ? props.remove : props.resend} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>
+                    <TouchableOpacity type='button' onPress={props.sent ? props.remove : props.resend}>
                         <Text>{props.users.sent ? 'Delete' : 'Resend'}</Text>
                     </TouchableOpacity>
                 </View>
@@ -92,17 +97,17 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         borderColor: '#475569',
         justifyContent: "space-evenly",
-        paddingHorizontal: 8,
+        paddingHorizontal: 6,
         paddingVertical: 4,
     },
-    buttonEdit: {
+    button: {
         fontWeight: 400,
         alignItems: "center",
-        backgroundColor: "#DDDDDD",
-        padding: 10
-    },
-    countContainer: {
-        alignItems: "center",
-        padding: 10
+        flex: 1,
+        justifyContent: 'space-evenly',
+        paddingVertical: 4,
+        "&:Hover": {
+            opacity: 0.5
+        }
     }
 });

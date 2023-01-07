@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { create, search } from './contactSlice';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-export default function ContactForm(props) {
+export default function ContactForm() {
     const dispatch = useDispatch()
     const [contact, setContact] = useState({
         addCond: false,
@@ -38,123 +39,109 @@ export default function ContactForm(props) {
 
     if (contact.addCond) {
         return (
-            <div>
+            <View>
                 {/* SEARCH START */}
-                <div className='container'>
-                    <div className='bg-blue-500 rounded-lg px-4 py-1'>
-                        <h1 className=' text-lg text-white font-bold'>Search Contact</h1>
-                    </div>
+                <View className='container'>
+                    <View className='bg-blue-500 rounded-lg px-4 py-1'>
+                        <Text className=' text-lg text-white font-bold'>Search Contact</Text>
+                    </View>
 
-                    <form onSubmit={handleSearch} className=''>
-                        <div id='searchForm' className='space-y-8 mt-8'>
-                            <div className='space-x-5 flex justify-evenly items-center'>
-                                <label className='text-lg font-semibold tracking-wide' htmlFor='searchName'>Name</label>
-                                <input type='text' id='searchName' name='searchName' onChange={handleInputChange} value={contact.searchName} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
-                            </div>
+                    <View className=''>
+                        <View id='searchForm' className='space-y-8 mt-8'>
+                            <View className='space-x-5 flex justify-evenly items-center'>
+                                <Text className='text-lg font-semibold tracking-wide' htmlFor='searchName'>Name</Text>
+                                <TextInput type='text' id='searchName' name='searchName' onChange={handleInputChange} value={contact.searchName} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
+                            </View>
 
-                            <div className='space-x-4 flex justify-evenly items-center'>
-                                <label className='text-lg font-semibold tracking-wide' htmlFor='searchPhone'>Phone</label>
-                                <input type='text' id='searchPhone' name='searchPhone' onChange={handleInputChange} value={contact.searchPhone} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
-                            </div>
-                        </div>
+                            <View className='space-x-4 flex justify-evenly items-center'>
+                                <Text className='text-lg font-semibold tracking-wide' htmlFor='searchPhone'>Phone</Text>
+                                <TextInput type='tel' id='searchPhone' name='searchPhone' onChange={handleInputChange} value={contact.searchPhone} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
+                            </View>
+                        </View>
 
-                        <div>
-                            <button className='hidden' type="submit" id="submit">Search</button>
-                        </div>
-                    </form>
-                </div>
+                        <View>
+                            <TouchableOpacity onPress={handleSearch}>
+                                <Text>Search</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
                 {/* SEARCH END */}
 
                 {/* ADD FORM START */}
-                <div className='container mt-10'>
-                    <div className='bg-blue-500 rounded-lg px-4 py-1'>
-                        <h1 className=' text-lg text-white font-bold'>Add Contact</h1>
-                    </div>
+                <View className='container mt-10'>
+                    <View className='bg-blue-500 rounded-lg px-4 py-1'>
+                        <Text className=' text-lg text-white font-bold'>Add Contact</Text>
+                    </View>
 
-                    <div className=''>
-                        <form onSubmit={handleSubmit} id='inputForm' className='space-y-8 mt-8'>
-                            <div className='space-x-5 flex justify-evenly items-center'>
-                                <label className='text-lg font-semibold tracking-wide' htmlFor='name'>Name</label>
-                                <input type='text' id='name' name='name' onChange={handleInputChange} value={contact.name || ''} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' onInvalid={e => e.target.setCustomValidity('Please enter name here')} onInput={e => e.target.setCustomValidity('')} required />
-                            </div>
+                    <View className=''>
+                        <View id='inputForm' className='space-y-8 mt-8'>
+                            <View className='space-x-5 flex justify-evenly items-center'>
+                                <Text className='text-lg font-semibold tracking-wide' htmlFor='name'>Name</Text>
+                                <TextInput type='text' id='name' name='name' onChange={handleInputChange} value={contact.name} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' onInvalid={e => e.target.setCustomValidity('Please enter name here')} onInput={e => e.target.setCustomValidity('')} required />
+                            </View>
 
-                            <div className='space-x-4 flex justify-evenly items-center'>
-                                <label className='text-lg font-semibold tracking-wide' htmlFor='phone'>Phone</label>
-                                <input type='tel' pattern='[08][0-9]{11}' id='phone' name='phone' onChange={handleInputChange} value={contact.phone || ''} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' onInvalid={e => e.target.setCustomValidity('Please enter phone here')} onInput={e => e.target.setCustomValidity('')} required />
-                            </div>
+                            <View className='space-x-4 flex justify-evenly items-center'>
+                                <Text className='text-lg font-semibold tracking-wide' htmlFor='phone'>Phone</Text>
+                                <TextInput type='tel' pattern='[08][0-9]{11}' id='phone' name='phone' onChange={handleInputChange} value={contact.phone} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' onInvalid={e => e.target.setCustomValidity('Please enter phone here')} onInput={e => e.target.setCustomValidity('')} required />
+                            </View>
 
-                            <p className='tracking-wide opacity-60'>Phone format: 0812345678912</p>
+                            <Text className='tracking-wide opacity-60'>Phone format: 0812345678912</Text>
 
-                            <div className='flex space-x-2'>
-                                <button type='submit' className='transition flex text-white bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-1 px-3'>
-                                    <p>Add</p>
-                                </button>
+                            <View className='flex space-x-2'>
+                                <TouchableOpacity onPress={handleSubmit} className='transition flex text-white bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-1 px-3'>
+                                    <Text>Add</Text>
+                                </TouchableOpacity>
 
-                                <button type='button' onClick={() => setContact({ addCond: false, name: '', phone: '' })} className='transition flex text-white bg-amber-500 hover:bg-amber-600 hover:delay-150 rounded-lg font-semibold items-center space-x-2 py-1 px-3'>
-                                    <p>Cancel</p>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                                <TouchableOpacity type='TouchableOpacity' onPress={() => setContact({ addCond: false, name: '', phone: '' })} className='transition flex text-white bg-amber-500 hover:bg-amber-600 hover:delay-150 rounded-lg font-semibold items-center space-x-2 py-1 px-3'>
+                                    <Text>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </View>
                 {/* ADD FORM END */}
-            </div>
+            </View >
         )
     } else {
         return (
-            <div>
+            <View>
                 {/* SEARCH START */}
-                <div className='container'>
-                    <div className='bg-blue-500 rounded-lg px-4 py-1'>
-                        <h1 className=' text-lg text-white font-bold'>Search Contact</h1>
-                    </div>
+                <View className='container'>
+                    <View className='bg-blue-500 rounded-lg px-4 py-1'>
+                        <Text className=' text-lg text-white font-bold'>Search Contact</Text>
+                    </View>
 
-                    <form onSubmit={handleSearch} className=''>
-                        <div id='searchForm' className='space-y-8 mt-8'>
-                            <div className='space-x-6 flex justify-evenly items-center'>
-                                <label className='text-lg font-semibold tracking-wide' htmlFor='searchName'>Name</label>
-                                <input type='text' id='searchName' name='searchName' onChange={handleInputChange} value={contact.searchName} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
-                            </div>
+                    <View onSubmit={handleSearch} className=''>
+                        <View id='searchForm' className='space-y-8 mt-8'>
+                            <View className='space-x-6 flex justify-evenly items-center'>
+                                <Text className='text-lg font-semibold tracking-wide' htmlFor='searchName'>Name</Text>
+                                <TextInput type='text' id='searchName' name='searchName' onChange={handleInputChange} value={contact.searchName} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
+                            </View>
 
-                            <div className='space-x-5 flex justify-evenly items-center'>
-                                <label className='text-lg font-semibold tracking-wide' htmlFor='searchPhone'>Phone</label>
-                                <input type='text' id='searchPhone' name='searchPhone' onChange={handleInputChange} value={contact.searchPhone} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
-                            </div>
-                        </div>
+                            <View className='space-x-5 flex justify-evenly items-center'>
+                                <Text className='text-lg font-semibold tracking-wide' htmlFor='searchPhone'>Phone</Text>
+                                <TextInput type='text' id='searchPhone' name='searchPhone' onChange={handleInputChange} value={contact.searchPhone} className='text-lg border-2 border-blue-200 rounded-lg px-4 py-2 w-full' />
+                            </View>
+                        </View>
 
-                        <div>
-                            <button className='hidden' type="submit" id="submit">Search</button>
-                        </div>
-                    </form>
-                </div>
+                        <View>
+                            <TouchableOpacity className='hidden' type="submit" id="submit">
+                                <Text>Search</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
                 {/* SEARCH END */}
 
                 {/* BUTTON ADD START */}
-                <div className='container mt-10'>
-                    <button type='button' onClick={() => setContact({ addCond: true, name: contact.name || '', phone: contact.phone || '' })} className='transition flex text-white bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-1 px-6'>
-                        <p>Add Contact</p>
-                    </button>
-                </div>
+                <View className='container mt-10'>
+                    <TouchableOpacity type='TouchableOpacity' onClick={() => setContact({ addCond: true, name: contact.name || '', phone: contact.phone || '' })} className='transition flex text-white bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-1 px-6'>
+                        <Text>Add Contact</Text>
+                    </TouchableOpacity>
+                </View>
                 {/* BUTTON ADD END */}
-            </div>
+            </View>
         )
     }
 }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         users: state.users.data,
-//         params: state.users.params
-//     }
-// }
-
-// const mapDispatchToProps = (dispatch, ownProps) => ({
-//     add: (name, phone) => dispatch(addContact(name, phone)),
-//     load: () => dispatch(loadContact()),
-//     search: (searchName, searchPhone) => dispatch(searchContact(searchName, searchPhone))
-// })
-
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(UserForm)
