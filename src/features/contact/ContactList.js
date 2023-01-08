@@ -1,3 +1,5 @@
+
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { View, StyleSheet } from 'react-native';
@@ -20,7 +22,7 @@ export default function ContactList(props) {
     }
 
     return (
-        <View onScroll={scrolling} style={styles.list}>
+        <View onScroll={scrolling} style={{ overflow: 'scroll' }}>
             {
                 contact.map((user, index) => (
                     <ContactItem
@@ -35,11 +37,3 @@ export default function ContactList(props) {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    list: {
-        display: 'flex',
-        overflow: 'scroll',
-        padding: 10
-    }
-});

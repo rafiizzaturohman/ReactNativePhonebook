@@ -45,7 +45,7 @@ export default function ContactItem(props) {
 
     if (isEdit.editCond) {
         return (
-            <View style={styles.card} >
+            <View style={styles.card}>
                 <View>
                     <TextInput value={contact.name} onPress={handleInputChange} style='px-2 py-1 border border-blue-400/75 rounded-lg w-full' required />
                 </View>
@@ -67,7 +67,7 @@ export default function ContactItem(props) {
         )
     } else {
         return (
-            <View style={styles.card} >
+            <View style={styles.card}>
                 <View>
                     <Text>{contact.name}</Text>
                 </View>
@@ -92,19 +92,20 @@ export default function ContactItem(props) {
 
 const styles = StyleSheet.create({
     card: {
-        flex: 1,
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderColor: '#475569',
-        justifyContent: "space-evenly",
-        paddingHorizontal: 6,
+        display: 'flex',
+        flexDirection: 'row',
+        // borderWidth: 1,
+        // borderStyle: "solid",
+        // borderColor: '#475569',
+        justifyContent: "space-between",
+        paddingHorizontal: 10,
         paddingVertical: 4,
     },
     button: {
+        display: 'flex',
+        flexDirection: 'row',
         fontWeight: 400,
         alignItems: "center",
-        flex: 1,
-        justifyContent: 'space-evenly',
         paddingVertical: 4,
         "&:Hover": {
             opacity: 0.5
