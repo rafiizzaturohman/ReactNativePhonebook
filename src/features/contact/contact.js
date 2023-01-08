@@ -1,13 +1,14 @@
-
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
 import { View, Text, StyleSheet } from 'react-native';
+import { s } from "react-native-wind";
+
 
 export default function Contact() {
     return (
-        <View>
-            <View>
-                <Text style={styles.title}>Phonebook App</Text>
+        <View style={s`max-h-screen overflow-y-scroll`}>
+            <View style={s`shadow-md py-4 bg-blue-100`}>
+                <Text style={s`text-xl text-center text-black font-bold tracking-wide`}>Phonebook App</Text>
             </View>
             <View>
                 {/* CARD FORM START */}
@@ -23,7 +24,7 @@ export default function Contact() {
                 {/* CARD LIST START */}
                 <View>
                     <View>
-                        <View style={{ marginTop: 100 }}>
+                        <View>
                             <ContactList />
                         </View>
                     </View>
@@ -33,25 +34,3 @@ export default function Contact() {
         </View >
     )
 }
-
-const styles = StyleSheet.create({
-    card: {
-        flex: 1,
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderColor: '#475569',
-        justifyContent: "space-evenly"
-    },
-    form: {
-        paddingHorizontal: 56,
-        paddingVertical: 32
-    },
-    title: {
-        textAlign: 'center',
-        fontWeight: '900',
-        fontSize: 25,
-        paddingVertical: 10,
-        backgroundColor: '#0ea5e9',
-        color: '#f1f5f9'
-    }
-})

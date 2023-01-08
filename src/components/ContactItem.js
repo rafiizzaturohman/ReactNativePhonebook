@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { s } from "react-native-wind";
 
 export default function ContactItem(props) {
     const [contact, setContact] = useState({
@@ -45,21 +46,21 @@ export default function ContactItem(props) {
 
     if (isEdit.editCond) {
         return (
-            <View style={styles.card}>
+            <View style={s`container shadow-2xl shadow-slate-300 bg-white/80 rounded-lg w-auto h-auto space-y-2 px-8 py-5`}>
                 <View>
-                    <TextInput value={contact.name} onPress={handleInputChange} style='px-2 py-1 border border-blue-400/75 rounded-lg w-full' required />
+                    <TextInput value={contact.name} onPress={handleInputChange} style={s`px-2 py-1 border border-blue-400/75 rounded-lg w-full`} required />
                 </View>
 
                 <View>
-                    <TextInput type='tel' pattern='[08][0-9]{11}' name='phone' id='phone' value={contact.phone} onPress={handleInputChange} style='px-2 py-1 border border-blue-400/75 rounded-lg w-full' required />
+                    <TextInput value={contact.phone} onPress={handleInputChange} style={s`px-2 py-1 border border-blue-400/75 rounded-lg w-full`} required />
                 </View>
 
-                <View style={styles.button}>
-                    <TouchableOpacity type='button' onPress={handleUpdate} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>
+                <View style={s`flex justify-evenly py-2`}>
+                    <TouchableOpacity type='button' onPress={handleUpdate} style='font-semibold tracking-wider'>
                         <Text>Update</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity type='button' onPress={editFalse} style='transition hover:text-slate-400 hover:delay-100 font-semibold tracking-wider'>
+                    <TouchableOpacity type='button' onPress={editFalse} style='font-semibold tracking-wider'>
                         <Text>Cancel</Text>
                     </TouchableOpacity>
                 </View>
@@ -68,22 +69,24 @@ export default function ContactItem(props) {
     } else {
         return (
             <View style={styles.card}>
-                <View>
-                    <Text>{contact.name}</Text>
-                </View>
+                <View style={styles.kard}>
+                    <View>
+                        <Text>{contact.name}</Text>
+                    </View>
 
-                <View>
-                    <Text>{contact.phone}</Text>
-                </View>
+                    <View>
+                        <Text>{contact.phone}</Text>
+                    </View>
 
-                <View style={styles.button}>
-                    <TouchableOpacity type='button' onPress={editTrue}>
-                        <Text>Edit</Text>
-                    </TouchableOpacity>
+                    <View style={styles.button}>
+                        <TouchableOpacity type='button' onPress={editTrue}>
+                            <Text style={s`font-semibold tracking-wide`}>Edit</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity type='button' onPress={props.sent ? props.remove : props.resend}>
-                        <Text>{props.users.sent ? 'Delete' : 'Resend'}</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity type='button' onPress={props.sent ? props.remove : props.resend}>
+                            <Text style={s`font-semibold tracking-wide ml-2`}>{props.users.sent ? 'Delete' : 'Resend'}</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         )
@@ -92,21 +95,20 @@ export default function ContactItem(props) {
 
 const styles = StyleSheet.create({
     card: {
+        paddingHorizontal: 10,
+        paddingVertical: 4
+    },
+    kard: {
         display: 'flex',
         flexDirection: 'row',
-        // borderWidth: 1,
-        // borderStyle: "solid",
-        // borderColor: '#475569',
         justifyContent: "space-between",
-        paddingHorizontal: 10,
-        paddingVertical: 4,
     },
     button: {
         display: 'flex',
         flexDirection: 'row',
         fontWeight: 400,
         alignItems: "center",
-        paddingVertical: 4,
+        paddingVertical: 3,
         "&:Hover": {
             opacity: 0.5
         }

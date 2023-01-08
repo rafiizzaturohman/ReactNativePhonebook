@@ -1,10 +1,9 @@
-
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { loadContactAsync, addContactAsync, removeContactAsync, updateContactAsync, selectContact, loadMore } from './contactSlice'
 import ContactItem from "../../components/ContactItem";
+import { s } from "react-native-wind";
 
 export default function ContactList(props) {
     const contact = useSelector(selectContact)
@@ -22,7 +21,7 @@ export default function ContactList(props) {
     }
 
     return (
-        <View onScroll={scrolling} style={{ overflow: 'scroll' }}>
+        <View onScroll={scrolling} style={s`overflow-y-auto`}>
             {
                 contact.map((user, index) => (
                     <ContactItem
