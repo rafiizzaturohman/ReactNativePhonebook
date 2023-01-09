@@ -26,12 +26,12 @@ export default function ContactForm() {
     return (
         <View style={s`flex flex-row justify-evenly`}>
             {/* SEARCH START */}
-            <View>
+            <View style={s`ml-4 mr-3`}>
                 <View style={s`bg-slate-500 rounded-lg px-4 py-1`}>
                     <Text style={s`text-md bg-blue-400 text-white font-bold rounded-sm tracking-wide mt-2 px-2`}>Search Contact</Text>
                 </View>
 
-                <View style={s`mx-3`}>
+                <View>
                     <View id='searchForm'>
                         <View>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='searchName'>Name</Text>
@@ -50,18 +50,22 @@ export default function ContactForm() {
                         <TouchableOpacity onPress={handleSearch} style={s`bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-0.5 px-3 my-2`}>
                             <Text style={s`tracking-wide font-semibold text-white`}>Search</Text>
                         </TouchableOpacity>
+
+                        <TouchableOpacity type='button' onPress={() => setContact({ searchName: '', searchPhone: '' })} style={s`mx-2`}>
+                            <Text style={s`font-bold`}>Cancel</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
             {/* SEARCH END */}
 
             {/* ADD FORM START */}
-            <View className=''>
+            <View style={s`mr-3`}>
                 <View style={s`bg-slate-500 rounded-lg px-4 py-1`}>
                     <Text style={s`text-md bg-blue-400 text-white font-bold rounded-sm tracking-wide mt-2 px-2`}>Add Contact</Text>
                 </View>
 
-                <View style={s`mx-3`}>
+                <View>
                     <View id='inputForm' onSubmit className='space-y-8 mt-8'>
                         <View>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='name'>Name</Text>
@@ -74,8 +78,8 @@ export default function ContactForm() {
 
                             <TextInput name='phone' onChangeText={phone => setContact({ ...contact, phone })} maxLength={13} defaultValue={contact.phone} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} required />
                         </View>
-
-                        <Text className='tracking-wide opacity-60'>Phone format: 0812345678912</Text>
+ 
+                        <Text className='tracking-wide opacity-60'>Phone format: 081234567891</Text>
 
                         <View style={styles.button}>
                             <TouchableOpacity type='button' onPress={handleAdd} style={s`bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-0.5 px-3`}>

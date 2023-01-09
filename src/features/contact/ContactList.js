@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { loadContactAsync, addContactAsync, removeContactAsync, updateContactAsync, selectContact, loadMore } from './contactSlice'
 import ContactItem from "../../components/ContactItem";
 import { s } from "react-native-wind";
@@ -21,8 +21,8 @@ export default function ContactList(props) {
     }
 
     return (
-        <SafeAreaView style={s`my-4 mx-2 border border-black rounded-md`}>
-            <ScrollView>
+        <View style={s`my-4 mx-2 border border-black rounded-md`}>
+            <ScrollView scrollEnabled={scrolling} pagingEnabled={true} showsHorizontalScrollIndicator={true}>
                 {
                     contact.map((user, index) => (
                         <ContactItem
@@ -35,7 +35,7 @@ export default function ContactList(props) {
                     ))
                 }
             </ScrollView>
-        </SafeAreaView >
+        </View>
     )
 }
 
