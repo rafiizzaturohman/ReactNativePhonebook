@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
     kard: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: 'center'
     },
     button: {
         display: 'flex',
