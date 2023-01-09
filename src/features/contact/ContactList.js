@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { View } from 'react-native';
+import { SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import { loadContactAsync, addContactAsync, removeContactAsync, updateContactAsync, selectContact, loadMore } from './contactSlice'
 import ContactItem from "../../components/ContactItem";
 import { s } from "react-native-wind";
@@ -21,18 +21,24 @@ export default function ContactList(props) {
     }
 
     return (
-        <View onScroll={scrolling} style={s`my-4 mx-2 border border-black rounded-md overflow-visible`}>
-            {
-                contact.map((user, index) => (
-                    <ContactItem
-                        key={user.id}
-                        users={user}
-                        sent={user.sent}
-                        resend={() => dispatch(addContactAsync({ id: user.id, name: user.name, phone: user.phone }))}
-                        update={(name, phone) => dispatch(updateContactAsync({ id: user.id, name: name, phone: phone }))}
-                        remove={() => dispatch(removeContactAsync({ id: user.id }))} />
-                ))
-            }
-        </View>
+        <SafeAreaView style={s`my-4 mx-2 border border-black rounded-md`}>
+            <ScrollView>
+                {
+                    contact.map((user, index) => (
+                        <ContactItem
+                            key={user.id}
+                            users={user}
+                            sent={user.sent}
+                            resend={() => dispatch(addContactAsync({ id: user.id, name: user.name, phone: user.phone }))}
+                            update={(name, phone) => dispatch(updateContactAsync({ id: user.id, name: name, phone: phone }))}
+                            remove={() => dispatch(removeContactAsync({ id: user.id }))} />
+                    ))
+                }
+            </ScrollView>
+        </SafeAreaView >
     )
 }
+
+const style = StyleSheet.create({
+
+})
