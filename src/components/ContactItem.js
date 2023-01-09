@@ -25,17 +25,6 @@ export default function ContactItem(props) {
         })
     }
 
-    const handleInputChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        setContact({
-            ...contact,
-            [name]: value
-        });
-    }
-
     const handleUpdate = useCallback((event) => {
         event.preventDefault()
         props.update(contact.name, contact.phone)
@@ -46,21 +35,21 @@ export default function ContactItem(props) {
 
     if (isEdit.editCond) {
         return (
-            <View style={s`container shadow-2xl shadow-slate-300 bg-white/80 rounded-lg w-auto h-auto space-y-2 px-8 py-5`}>
+            <View style={s`rounded-lg w-auto h-auto space-y-2 px-8 py-5`}>
                 <View>
-                    <TextInput value={contact.name} onPress={handleInputChange} style={s`px-2 py-1 border border-blue-400/75 rounded-lg w-full`} required />
+                    <TextInput value={contact.name} onChangeText={name => setContact({ ...contact, name })} style={s`px-2 py-0.5 border border-blue-400/75 rounded-lg w-full`} required />
                 </View>
 
-                <View>
-                    <TextInput value={contact.phone} onPress={handleInputChange} style={s`px-2 py-1 border border-blue-400/75 rounded-lg w-full`} required />
+                <View style={s`mt-2`}>
+                    <TextInput value={contact.phone} onChangeText={phone => setContact({ ...contact, phone })} maxLength={13} style={s`px-2 py-0.5 border border-blue-400/75 rounded-lg w-full`} required />
                 </View>
 
-                <View style={s`flex justify-evenly py-2`}>
-                    <TouchableOpacity type='button' onPress={handleUpdate} style='font-semibold tracking-wider'>
+                <View style={styles.button}>
+                    <TouchableOpacity type='button' onPress={handleUpdate} style={s`font-semibold tracking-wider`}>
                         <Text>Update</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity type='button' onPress={editFalse} style='font-semibold tracking-wider'>
+                    <TouchableOpacity type='button' onPress={editFalse} style={s`font-semibold tracking-wider ml-2`}>
                         <Text>Cancel</Text>
                     </TouchableOpacity>
                 </View>
@@ -101,16 +90,13 @@ const styles = StyleSheet.create({
     kard: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: "space-between",
+        justifyContent: "space-between"
     },
     button: {
         display: 'flex',
         flexDirection: 'row',
         fontWeight: 400,
         alignItems: "center",
-        paddingVertical: 3,
-        "&:Hover": {
-            opacity: 0.5
-        }
+        paddingVertical: 3
     }
 });

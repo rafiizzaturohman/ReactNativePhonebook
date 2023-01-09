@@ -13,31 +13,18 @@ export default function ContactForm() {
         searchPhone: ''
     })
 
-    const handleInputChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        setContact({
-            ...contact,
-            [name]: value
-        });
-    }
-
-    const handleAdd = useCallback((event) => {
-        event.preventDefault()
+    const handleAdd = useCallback(() => {
         dispatch(create(contact.name, contact.phone))
         setContact({ name: '', phone: '' })
     }, [dispatch, contact])
 
-    const handleSearch = useCallback((event) => {
-        event.preventDefault()
+    const handleSearch = useCallback(() => {
         dispatch(search(contact.searchName, contact.searchPhone))
         // setContact({ name: '', phone: '' })
     }, [contact])
 
     return (
-        <View>
+        <View style={s`flex flex-row justify-evenly`}>
             {/* SEARCH START */}
             <View>
                 <View style={s`bg-slate-500 rounded-lg px-4 py-1`}>
@@ -46,21 +33,21 @@ export default function ContactForm() {
 
                 <View style={s`mx-3`}>
                     <View id='searchForm'>
-                        <View style={s`grid grid-cols-2`}>
+                        <View>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='searchName'>Name</Text>
 
-                            <TextInput name='searchName' onChange={handleInputChange} value={contact.searchName} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} />
+                            <TextInput name='searchName' onChangeText={searchName => setContact({ ...contact, searchName })} value={contact.searchName} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} />
                         </View>
 
-                        <View style={s`grid grid-cols-2 mt-2`}>
+                        <View style={s`mt-2`}>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='searchPhone'>Phone</Text>
 
-                            <TextInput name='searchPhone' onChange={handleInputChange} value={contact.searchPhone} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} />
+                            <TextInput name='searchPhone' onChangeText={searchPhone => setContact({ ...contact, searchPhone })} value={contact.searchPhone} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} />
                         </View>
                     </View>
 
-                    <View style={styles.button}>
-                        <TouchableOpacity onPress={handleSearch} style={s`bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-1 px-3 my-2`}>
+                    <View style={s`flex flex-row mt-6`}>
+                        <TouchableOpacity onPress={handleSearch} style={s`bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-0.5 px-3 my-2`}>
                             <Text style={s`tracking-wide font-semibold text-white`}>Search</Text>
                         </TouchableOpacity>
                     </View>
@@ -71,32 +58,32 @@ export default function ContactForm() {
             {/* ADD FORM START */}
             <View className=''>
                 <View style={s`bg-slate-500 rounded-lg px-4 py-1`}>
-                    <Text style={s`text-md bg-blue-400 text-white font-bold rounded-sm tracking-wide px-2`}>Add Contact</Text>
+                    <Text style={s`text-md bg-blue-400 text-white font-bold rounded-sm tracking-wide mt-2 px-2`}>Add Contact</Text>
                 </View>
 
                 <View style={s`mx-3`}>
-                    <View id='inputForm' className='space-y-8 mt-8'>
+                    <View id='inputForm' onSubmit className='space-y-8 mt-8'>
                         <View>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='name'>Name</Text>
 
-                            <TextInput name='name' onChange={handleInputChange} value={contact.name} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} required />
+                            <TextInput name='name' onChangeText={name => setContact({ ...contact, name })} defaultValue={contact.name} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} required />
                         </View>
 
-                        <View>
+                        <View style={s`my-2`}>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='phone'>Phone</Text>
 
-                            <TextInput name='phone' onChange={handleInputChange} value={contact.phone} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} required />
+                            <TextInput name='phone' onChangeText={phone => setContact({ ...contact, phone })} maxLength={13} defaultValue={contact.phone} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-full`} required />
                         </View>
 
                         <Text className='tracking-wide opacity-60'>Phone format: 0812345678912</Text>
 
                         <View style={styles.button}>
-                            <TouchableOpacity type='button' onPress={handleAdd} style={s`bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-1 px-3`}>
+                            <TouchableOpacity type='button' onPress={handleAdd} style={s`bg-blue-500 hover:bg-blue-600 hover:delay-150 rounded-lg font-semibold items-center space-x-3 py-0.5 px-3`}>
                                 <Text style={s`text-white`}>Add</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity type='button' onPress={() => setContact({ name: '', phone: '' })} style={s`ml-2`}>
-                                <Text>Cancel</Text>
+                            <TouchableOpacity type='button' onPress={() => setContact({ name: '', phone: '' })} style={s`mx-2`}>
+                                <Text style={s`font-bold`}>Cancel</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

@@ -21,7 +21,7 @@ export default function ContactList(props) {
     }
 
     return (
-        <View onScroll={scrolling} style={s`overflow-y-auto`}>
+        <View onScroll={scrolling} style={s`my-4 mx-2 border border-black rounded-md overflow-visible`}>
             {
                 contact.map((user, index) => (
                     <ContactItem
