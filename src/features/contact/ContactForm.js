@@ -36,13 +36,13 @@ export default function ContactForm() {
                         <View>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='searchName'>Name</Text>
 
-                            <TextInput name='searchName' onChangeText={searchName => setContact({ ...contact, searchName })} value={contact.searchName} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-56`} />
+                            <TextInput name='searchName' onChangeText={searchName => setContact({ ...contact, searchName })} value={contact.searchName} style={s`text-lg border-2 border-blue-200 rounded-lg px-2 py-0.5 w-56`} />
                         </View>
 
                         <View style={s`mt-2`}>
                             <Text style={s`text-md font-semibold tracking-wide`} htmlFor='searchPhone'>Phone</Text>
 
-                            <TextInput name='searchPhone' onChangeText={searchPhone => setContact({ ...contact, searchPhone })} value={contact.searchPhone} style={s`text-xs border-2 border-blue-200 rounded-lg px-2 py-0.5 w-56`} />
+                            <TextInput name='searchPhone' onChangeText={searchPhone => setContact({ ...contact, searchPhone })} value={contact.searchPhone} style={s`text-lg border-2 border-blue-200 rounded-lg px-2 py-0.5 w-56`} />
                         </View>
                     </View>
 
