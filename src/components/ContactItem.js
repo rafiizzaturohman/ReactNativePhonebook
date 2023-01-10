@@ -60,11 +60,11 @@ export default function ContactItem(props) {
             <View style={styles.card}>
                 <View style={styles.kard}>
                     <View>
-                        <Text>{contact.name}</Text>
+                        <Text style={s`text-base`}>{contact.name}</Text>
                     </View>
 
                     <View>
-                        <Text>{contact.phone}</Text>
+                        <Text style={s`text-base`}>{contact.phone}</Text>
                     </View>
 
                     <View style={styles.button}>

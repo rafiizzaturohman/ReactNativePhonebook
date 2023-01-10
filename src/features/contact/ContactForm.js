@@ -51,7 +51,9 @@ export default function ContactForm() {
                             <Text style={s`tracking-wide font-semibold text-white`}>Search</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity type='button' onPress={() => setContact({ searchName: '', searchPhone: '' })} style={s`mx-2`}>
+                        <TouchableOpacity type='button' onPress={() => {
+                            setContact({ searchName: '', searchPhone: '' })
+                        }} style={s`mx-2`}>
                             <Text style={s`font-bold`}>Cancel</Text>
                         </TouchableOpacity>
                     </View>
@@ -100,15 +102,14 @@ export default function ContactForm() {
 
 const styles = StyleSheet.create({
     card: {
-        paddingHorizontal: 10,
-        paddingVertical: 4,
+        paddingHorizontal: 10
     },
     button: {
         display: 'flex',
         flexDirection: 'row',
         fontWeight: 400,
         alignItems: "center",
-        paddingVertical: 4,
+        paddingTop: 4,
         "&:Hover": {
             opacity: 0.5
         }

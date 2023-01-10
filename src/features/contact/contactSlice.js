@@ -206,7 +206,7 @@ export const loadMore = () => {
     return async (dispatch, getState) => {
         try {
             let state = getState()
-            if (state.contact.value.params.page <= state.contact.value.params.pages) {
+            if (state.contact.value.params.page < state.contact.value.params.pages) {
                 let params = {
                     ...state.contact.value.params,
                     page: state.contact.value.params.page + 1

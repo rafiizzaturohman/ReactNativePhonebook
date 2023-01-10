@@ -7,8 +7,8 @@ import { s } from "react-native-wind";
 export default function Contact() {
     return (
         <View>
-            <View style={s`shadow-md py-3 bg-blue-100`}>
-                <Text style={s`text-xl text-center text-black font-bold tracking-wide`}>Phonebook App</Text>
+            <View style={s`py-3 bg-blue-500`}>
+                <Text style={s`text-xl text-center text-white font-bold tracking-wide`}>Phonebook App</Text>
             </View>
             <View>
                 {/* CARD FORM START */}
@@ -20,7 +20,9 @@ export default function Contact() {
                     </View>
                 </View>
                 {/* CARD FORM END */}
-
+                <View>
+                    <Text style={s`bg-blue-500 py-min4 my-4`}></Text>
+                </View>
                 {/* CARD LIST START */}
                 <View>
                     <View>
