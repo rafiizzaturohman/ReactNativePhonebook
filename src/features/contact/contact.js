@@ -21,7 +21,7 @@ export default function Contact() {
                 </View>
                 {/* CARD FORM END */}
                 <View>
-                    <Text style={s`bg-blue-500 py-min4 my-4`}></Text>
+                    <Text style={s`bg-blue-500 mt-4 mb-2`}></Text>
                 </View>
                 {/* CARD LIST START */}
                 <View>
