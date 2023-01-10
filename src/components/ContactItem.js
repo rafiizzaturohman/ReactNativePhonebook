@@ -37,20 +37,20 @@ export default function ContactItem(props) {
         return (
             <View style={s`rounded-lg w-auto h-auto space-y-2 px-8 py-5`}>
                 <View>
-                    <TextInput value={contact.name} onChangeText={name => setContact({ ...contact, name })} style={s`px-2 py-0.5 border border-blue-400/75 rounded-lg w-full`} required />
+                    <TextInput value={contact.name} onChangeText={name => setContact({ ...contact, name })} style={s`text-lg px-2 py-0.5 border border-blue-400/75 rounded-lg w-full`} required />
                 </View>
 
-                <View style={s`mt-2`}>
-                    <TextInput value={contact.phone} onChangeText={phone => setContact({ ...contact, phone })} maxLength={13} style={s`px-2 py-0.5 border border-blue-400/75 rounded-lg w-full`} required />
+                <View style={s`text-lg mt-2`}>
+                    <TextInput value={contact.phone} onChangeText={phone => setContact({ ...contact, phone })} maxLength={13} style={s`text-lg px-2 py-0.5 border border-blue-400/75 rounded-lg w-full`} required />
                 </View>
 
                 <View style={styles.button}>
                     <TouchableOpacity type='button' onPress={handleUpdate} style={s`font-semibold tracking-wider`}>
-                        <Text>Update</Text>
+                        <Text style={s`text-xl font-semibold`}>Update</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity type='button' onPress={editFalse} style={s`font-semibold tracking-wider ml-2`}>
-                        <Text>Cancel</Text>
+                        <Text style={s`text-xl font-semibold`}>Cancel</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -60,20 +60,20 @@ export default function ContactItem(props) {
             <View style={styles.card}>
                 <View style={styles.kard}>
                     <View>
-                        <Text style={s`text-base`}>{contact.name}</Text>
+                        <Text style={s`text-xl`}>{contact.name}</Text>
                     </View>
 
                     <View>
-                        <Text style={s`text-base`}>{contact.phone}</Text>
+                        <Text style={s`text-xl`}>{contact.phone}</Text>
                     </View>
 
                     <View style={styles.button}>
                         <TouchableOpacity type='button' onPress={editTrue}>
-                            <Text style={s`font-semibold tracking-wide`}>Edit</Text>
+                            <Text style={s`text-xl font-semibold tracking-wide`}>Edit</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity type='button' onPress={props.sent ? props.remove : props.resend}>
-                            <Text style={s`font-semibold tracking-wide ml-2`}>{props.users.sent ? 'Delete' : 'Resend'}</Text>
+                            <Text style={s`text-xl font-semibold tracking-wide ml-2`}>{props.users.sent ? 'Delete' : 'Resend'}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -84,8 +84,8 @@ export default function ContactItem(props) {
 
 const styles = StyleSheet.create({
     card: {
-        paddingHorizontal: 10,
-        paddingVertical: 4
+        marginHorizontal: 30,
+        paddingVertical: 6
     },
     kard: {
         display: 'flex',

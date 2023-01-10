@@ -1,6 +1,6 @@
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { s } from "react-native-wind";
 
 
