@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const url = axios.create({
-    baseURL: 'http://192.168.1.7:3002/',
+    baseURL: 'http://192.168.56.11:3002/',
     timeout: 1000,
     headers: { 'Authorization': 'token' }
 })
